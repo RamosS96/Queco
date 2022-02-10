@@ -17,27 +17,27 @@ class Ingredients {
     };
     addList() {
         if (this.group == "fruits") {
-            fruits.push(this);
+            fruits.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "vegetables") {
-            vegetables.push(this);
+            vegetables.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "mchicken") {
-            mchicken.push(this);
+            mchicken.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "mcow") {
-            mcow.push(this);
+            mcow.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "mfish") {
-            mfish.push(this);
+            mfish.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "mpork") {
-            mpork.push(this);
+            mpork.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "legume") {
-            legume.push(this);
+            legume.push({id: this.id, group: this.group, desc : this.desc});
         } else if (this.group == "misc") {
-            misc.push(this);
+            misc.push({id: this.id, group: this.group, desc : this.desc});
         }
     }
 }
 //Listado Frutas
 
-const f01 = new Ingredients(01, "fruits", "Banana");f01.addList();
+const f01 = new Ingredients(01, "fruits", "Banana");f01.addList(f01.desc);
 const f02 = new Ingredients(02, "fruits", "Durazno");f02.addList();
 const f03 = new Ingredients(03, "fruits", "Higo");f03.addList();
 const f04 = new Ingredients(04, "fruits", "Kiwi");f04.addList();
@@ -143,5 +143,18 @@ const o14 = new Ingredients(14, "misc", "Portobellos");o14.addList();
 const o15 = new Ingredients(15, "misc", "Ricotta");o15.addList();
 const o16 = new Ingredients(16, "misc", "Salsa de Soja");o16.addList();
 const o17 = new Ingredients(17, "misc", "Vinagre");o17.addList();
-console.log(misc.join(","));
+console.log(misc);
 
+let dato = () => {s = prompt("Que ingrediente desea agregar?:")}
+dato();
+let resultado = () => {t = misc.find(grupo => grupo.desc == s)};
+resultado();
+agregarALista = () => {ingredientsList.push(t)}
+
+ while ((s !='')&& (t!=undefined)){
+    dato();
+    agregarALista();
+    resultado();
+ }
+
+ console.log(ingredientsList);
