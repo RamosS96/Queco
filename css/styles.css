@@ -1,0 +1,1 @@
+@font-face{font-family:'titles';src:url(../scss/fonts/Courgette-Regular.ttf)}body{font-size:large;font-family:titles}body .btn-selected-ing{position:fixed;right:15px;top:70px;height:50px;width:50px;z-index:9999}body .modal-ingredient{position:fixed;top:70px;width:100px;height:100px;z-index:9999;background-color:#eeaa23;border-style:solid;border-width:5px;border-color:#614433}

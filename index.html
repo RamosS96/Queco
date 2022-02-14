@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,43 +9,93 @@
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <title>QueCo APP</title>
 </head>
+
 <body>
-  <header class="container">
+  <header class="container-fluid">
     <div class="row">
-      <div class="col-xl-12 d-flex justify-content-between">
-        <div>
-          <p>
-            QUECOAPP
-          </p>
-        </div>
-        <div>
-          <ul class="nav">
-            <li class="nav-item"><a class="nav-link">Recetas</a></li>
-            <li class="nav-item"><a class="nav-link">Quienes somos</a></li>
-            <li class="nav-item"><a class="nav-link">Colaborar</a></li>
-          </ul>
-        </div>
+      <div class="col-xl-12">
+        <nav class="navbar sticky-top navbar-light bg-light">
+          <a class="navbar-brand" href="#">Queco APP</a>
+          <div class="d-flex">
+            <ul class="navbar-nav d-flex flex-row justify-content-between">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Busqueda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
     </div>
   </header>
   <main class="container">
-    <div class="row">
-      <div class="col-md-6 offset-lg-3 justify-content-center">
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-3">QUECOAPP</h1>
-            <br class="lead">
-              Encontrá las mejores recetas en nuestro sitio. </br>
-              Sólo tenés que saber qué tenes en la heladera!
-            </p>
+    <div class="row justify-content-center">
+      <div class="col-md-6 justify-content-center">
+        <h1 class="text-center">Que Comemos APP</h1>
+        <h3 class="text-center">Explorá miles de recetas, solo tenes que saber que hay en tu heladera!</h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <h4 class="text-center"><a href=#ing-src>Búsqueda por ingredientes</a></h4>
+      </div>
+      <div class="col-md-4">
+        <h4 class="text-center"><a href=#rec-src>Búsqueda por recetas</a></h4>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7 d-flex justify-content-center flex-column" id="ing-src">
+        <h5>Busqueda por Ingredientes</h5>
+        <div class="d-flex flex-column container btn-group">
+          <p class="text-center">Frutas</p>
+          <div id="ing-form-fruits" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Vegetales</p>
+          <div id="ing-form-vegetables" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Carne Bovina</p>
+          <div id="ing-form-mealcow" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Pollo</p>
+          <div id="ing-form-mealchicken" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Pescados y Mariscos</p>
+          <div id="ing-form-mealfish" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Carne de Cerdo</p>
+          <div id="ing-form-mealpork" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Legumbres</p>
+          <div id="ing-form-legume" class="d-flex justify-content-center flex-wrap">
+          </div>
+          <p class="text-center">Otros</p>
+          <div id="ing-form-misc" class="d-flex justify-content-center flex-wrap">
           </div>
         </div>
       </div>
+      <div class="col-md-7 d-flex justify-content-center flex-column" id="rec-src">
+        <h5>Busqueda por Recetas</h5>
+        <div>        
+        </div>
+      </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <div>
+        <button id="btn-open-modal" class="btn-selected-ing">
+          Sel
+        </button>
+        <div class="invisible">
+          <div id="selected-ingredients"></div>
+        </div>
+      </div>
+    </div>
+    
   </main>
-  <footer class="container fixed-bottom">
+  <footer class="container">
     <div class="row">
-      <div class="col-lg-3 offset-lg-3 d-flex justify-content-center">
+      <div class="col-lg-3 offset-lg-3 d-flex justify-content-center rounded">
         <p>Copyright WebsRS</p>
       </div>
     </div>
@@ -53,4 +104,5 @@
   <script src="js/popper.min.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
