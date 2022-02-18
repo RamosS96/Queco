@@ -145,20 +145,6 @@ const o16 = new Ingredients("o16", "misc", "Salsa de Soja"); o16.addList();
 const o17 = new Ingredients("o17", "misc", "Vinagre"); o17.addList();
 
 
-// let dato = () => {s = prompt("Que ingrediente desea agregar?:")}
-// dato();
-// let resultado = () => {t = misc.find(grupo => grupo.desc == s)};
-// resultado();
-// agregarALista = () => {ingredientsList.push(t)}
-
-//  while ((s !='')&& (t!=undefined)){
-//     dato();
-//     agregarALista();
-//     resultado();
-//  }
-
-//  console.log(ingredientsList);
-
 const fruitsList = document.getElementById('ing-form-fruits');
 const vegetablesList = document.getElementById('ing-form-vegetables');
 const mealcowList = document.getElementById('ing-form-mealcow');
@@ -190,6 +176,8 @@ generateLists(mpork, mealporkList);
 generateLists(legume, legumeList);
 generateLists(misc, miscList);
 
+//---------------------------------------------Modal y selecciones----------------------------------
+
 function addToList(id, desc) {
     const divid = document.getElementById(id);
     divid.onclick = () => {
@@ -200,19 +188,48 @@ function addToList(id, desc) {
 }
 
 const modalOpenBtn = document.getElementById('btn-open-modal');
+const modalCloseBtn = document.getElementById('btn-close-modal');
 const newModal = document.getElementById('selected-ingredients');
+const newModalContainer = document.getElementById('modal-container');
 
 function generateModal() {
-    newModal.innerHTML = '';
-    ingredientsList.forEach(id => {
-        const list = document.createElement('span');
+    const newIngredientsList = [...new Set (ingredientsList)];
+    newIngredientsList.forEach((id) => {
+        const list = document.createElement('button');
         list.id = id.id;
         list.innerText = id.desc;
+        list.className = 'rounded d-block'
+        newModal.className = 'd-flex justify-content-center flex-wrap flex-column';
         newModal.appendChild(list);
+        console.log(newIngredientsList);
     })
 }
 
 modalOpenBtn.onclick = () => {
-    newModal.className = 'visible modal-ingredient d-flex flex-column';
-    generateModal();
+    newModalContainer.className = 'visible container modal-ingredient d-flex flex-column';
+    modalOpenBtn.className ='invisible';
+    generateModal();    
 }
+
+modalCloseBtn.onclick = () => {
+    modalOpenBtn.className = 'visible btn-selected-ing';
+    newModalContainer.className = 'invisible';
+    newModal.innerHTML = '';
+}   
+
+//----------------------------------- Busqueda de recetas y storage seleccion -----------------------
+
+
+
+
+
+
+
+
+
+
+//Prueba fetch
+// const cheesecake = "cheesecake";
+// fetch(`./pages/recipes/cakes/${cheesecake}.txt`)
+// .then(response => response.text())
+// .then(text => console.log(text))
