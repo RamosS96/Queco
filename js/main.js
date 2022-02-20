@@ -220,7 +220,7 @@ modalCloseBtn.onclick = () => {
 //----------------------------------- Busqueda de recetas y storage seleccion -----------------------
 
 
-
+console.log(misc);
 
 
 
