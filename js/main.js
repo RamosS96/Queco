@@ -48,7 +48,7 @@ function generateLists(array, group) {
         div.innerText = id.desc;
         div.classList = 'btn-sm rounded-circle';
         group.append(div);
-        addToList(id.id, id.desc);
+        checkList(id.id, id.desc);
     })
 };
 
@@ -59,19 +59,26 @@ const modalCloseBtn = document.getElementById('btn-close-modal');
 const newModal = document.getElementById('selected-ingredients');
 const newModalContainer = document.getElementById('modal-container');
 
-function addToList(id, desc) {
-    const divid = document.getElementById(id);
-    let finder = ingredientsList.find(el => el.id == id);
-    let result = ingredientsList.indexOf(finder);
-    (result) == -1 ?
-    divid.onclick = () => {
-        ingredientsList.push({ id: id, desc: desc });
-    } : alert("El ingrediente ya se encuentra en la lista")
-
+function checkList(id, desc) {
+    do {
+        const divid = document.getElementById(id);
+        
+        divid.onclick=() => {
+            ingredientsList.push({ id: id, desc: desc });
+            console.log(ingredientsList);
+            
+        }
+    } while (ingredientsList.find(el => el.id == id) == undefined);
 }
-function checkList (){
+// function addToList(id, desc) {
 
-}
+//     divid.onclick = () => {
+//         ingredientsList.push({ id: id, desc: desc });
+//         console.log(ingredientsList);
+//     }
+
+// }
+
 
 function generateModal() {
     ingredientsList.forEach((id) => {
@@ -89,7 +96,7 @@ function generateModal() {
 
 function reduceItem(id) {
     let ingretientToReduce = ingredientsList.find(el => el.id == id);
-    console.log(ingretientToReduce);
+    console.log(ingretientToReduce)
     let index = ingredientsList.indexOf(ingretientToReduce)
     ingredientsList.splice(index,1);
     newModal.innerHTML = '';
