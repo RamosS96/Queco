@@ -37,7 +37,6 @@ const mealfishList = document.getElementById('ing-form-mealfish');
 const mealporkList = document.getElementById('ing-form-mealpork');
 const legumeList = document.getElementById('ing-form-legume');
 const miscList = document.getElementById('ing-form-misc');
-const selectedIngredients = document.getElementById('selected-ingredients');
 
 function generateLists(array, group) {
     group.innerHTML = '';
@@ -55,64 +54,46 @@ function generateLists(array, group) {
 
 //---------------------------------------------Modal y selecciones----------------------------------
 const modalOpenBtn = document.getElementById('btn-open-modal');
-const modalCloseBtn = document.getElementById('btn-close-modal');
-const newModal = document.getElementById('selected-ingredients');
 const newModalContainer = document.getElementById('modal-container');
 
 function checkList(id, desc) {
-    do {
-        const divid = document.getElementById(id);
+const divid = document.getElementById(id);
         
         divid.onclick=() => {
             ingredientsList.push({ id: id, desc: desc });
             console.log(ingredientsList);
             
-        }
-    } while (ingredientsList.find(el => el.id == id) == undefined);
-}
-// function addToList(id, desc) {
+        }}
+    
 
-//     divid.onclick = () => {
-//         ingredientsList.push({ id: id, desc: desc });
-//         console.log(ingredientsList);
-//     }
-
-// }
-
-
-function generateModal() {
-    ingredientsList.forEach((id) => {
-        const list = document.createElement('button');
-        list.id = id.id;
-        list.setAttribute("onclick", `reduceItem("${id.id}")`)
-        list.innerText = id.desc;
-        list.className = 'rounded d-block'
-        newModal.className = 'd-flex justify-content-center flex-wrap flex-column';
-        newModal.appendChild(list);
-    });
-    console.log(ingredientsList);
-
-}
 
 function reduceItem(id) {
-    let ingretientToReduce = ingredientsList.find(el => el.id == id);
-    console.log(ingretientToReduce)
-    let index = ingredientsList.indexOf(ingretientToReduce)
+    let ingredientToReduce = ingredientsList.find(el => el.id == id);
+    console.log(ingredientToReduce)
+    let index = ingredientsList.indexOf(ingredientToReduce)
     ingredientsList.splice(index,1);
-    newModal.innerHTML = '';
-    generateModal();
-}
-modalOpenBtn.onclick = () => {
-    newModalContainer.className = 'visible container modal-ingredient d-flex flex-column';
-    modalOpenBtn.className = 'invisible';
-    generateModal();
+    
+    
 }
 
-modalCloseBtn.onclick = () => {
-    modalOpenBtn.className = 'visible btn-selected-ing';
-    newModalContainer.className = 'invisible';
-    newModal.innerHTML = '';
+modalOpenBtn.onclick = () => {
+        const newIngredientList = [];
+        ingredientsList.forEach(id => {
+            let item;
+            item = id.desc;
+            newIngredientList.push(`<button onclick=reduceItem(${id.id})>${item}</button>`);
+        });
+
+    Swal.fire({
+        template: '#my-template',
+        html: `'${newIngredientList}'`
+      });
 }
+
+
+
+
+
 
 //----------------------------------- Busqueda de recetas y storage seleccion -----------------------
 

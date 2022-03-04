@@ -86,19 +86,23 @@
         <button id="btn-open-modal" class="btn-selected-ing">
           Sel
         </button>
-        <div class="invisible">
-          <div id="modal-container" class="d-flex justify-content-between">
-            <div class="text-right d-flex justify-content-center flex-wrap">
-              <span id="list-header-ing">Lista de Ingredientes</span>
-              <div id="btn-close-container">
-                <button id="btn-close-modal">Close</button>
-              </div>
-              <div id="selected-ingredients" class="d-flex justify-content-center"></div>
-            </div>
-          </div>
-        </div>
       </div>
-
+      <template id="my-template">
+        <swal-title>
+          Seleccionados
+        </swal-title>
+        <swal-html></swal-html>
+        <swal-button type="confirm">
+          Buscar
+        </swal-button>
+        <swal-button type="cancel">
+          Volver
+        </swal-button>
+        <swal-param name="allowEscapeKey" value="false" />
+        <swal-param
+          name="customClass"
+          value='{ "popup": "my-popup" }' />
+      </template>
   </main>
   <footer class="container">
     <div class="row">
@@ -107,6 +111,7 @@
       </div>
     </div>
   </footer>
+  <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/main.js"></script>
