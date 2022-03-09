@@ -1,16 +1,8 @@
 let ingredientsList = [];
 
-const fruits = [];
-const vegetables = [];
-const mchicken = [];
-const mcow = [];
-const mfish = [];
-const mpork = [];
-const legume = [];
-const misc = [];
 fetch('./js/ingredients.json')
     .then(response => response.json())
-    .then(data => {       
+    .then(data => {
         fruits.push(...data.ingredients.fruits);
         vegetables.push(...data.ingredients.vegetables);
         mchicken.push(...data.ingredients.mchicken);
@@ -27,7 +19,23 @@ fetch('./js/ingredients.json')
         generateLists(mpork, mealporkList);
         generateLists(legume, legumeList);
         generateLists(misc, miscList);
-    }) 
+        console.log(fruits[1]);
+        console.log(fruits);
+        function addToList(id, group) {
+            let ingredientToAdd = group.find(el => el.id == id.id);
+            ingredientsList.push(ingredientToAdd);
+        }
+        addToList(f10,fruits);
+        console.log(ingredientsList);
+    });
+const fruits = [];
+const vegetables = [];
+const mchicken = [];
+const mcow = [];
+const mfish = [];
+const mpork = [];
+const legume = [];
+const misc = [];
 
 const fruitsList = document.getElementById('ing-form-fruits');
 const vegetablesList = document.getElementById('ing-form-vegetables');
@@ -37,6 +45,8 @@ const mealfishList = document.getElementById('ing-form-mealfish');
 const mealporkList = document.getElementById('ing-form-mealpork');
 const legumeList = document.getElementById('ing-form-legume');
 const miscList = document.getElementById('ing-form-misc');
+
+
 
 function generateLists(array, group) {
     group.innerHTML = '';
@@ -50,18 +60,12 @@ function generateLists(array, group) {
     })
 };
 
-function addToList(id, group){
-    let ingredientToAdd = group.find(el => el.id == id.id);
-    ingredientsList.push(ingredientToAdd);
-}
+
 
 //---------------------------------------------Modal y selecciones----------------------------------
 const modalOpenBtn = document.getElementById('btn-open-modal');
 const formIng = document.getElementById('ing');
 
-const asd = fruits.map(id => id.id);
-console.log(fruits);
-console.log(asd);
 
 function reduceItem(id) {
     let ingredientToReduce = newIngredientList.find(el => el.id == id.id);
@@ -81,7 +85,7 @@ modalOpenBtn.onclick = () => {
         item = id.desc;
         newIngredientList.push(`<button class="refresh-swal" onclick=reduceItem(${id.id})>${item}</button>`);
     });
-    const ingredientsInModal = [...new Set(newIngredientList)];       
+    const ingredientsInModal = [...new Set(newIngredientList)];
 
     Swal.fire({
         template: '#my-template',
