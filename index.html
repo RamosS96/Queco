@@ -48,31 +48,34 @@
     <div class="row justify-content-center">
       <div class="col-md-7 d-flex justify-content-center flex-column" id="ing-src">
         <h5>Busqueda por Ingredientes</h5>
-        <div class="d-flex flex-column container btn-group">
-          <p class="text-center">Frutas</p>
-          <div id="ing-form-fruits" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Vegetales</p>
-          <div id="ing-form-vegetables" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Carne Bovina</p>
-          <div id="ing-form-mealcow" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Pollo</p>
-          <div id="ing-form-mealchicken" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Pescados y Mariscos</p>
-          <div id="ing-form-mealfish" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Carne de Cerdo</p>
-          <div id="ing-form-mealpork" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Legumbres</p>
-          <div id="ing-form-legume" class="d-flex justify-content-center flex-wrap">
-          </div>
-          <p class="text-center">Otros</p>
-          <div id="ing-form-misc" class="d-flex justify-content-center flex-wrap">
-          </div>
+        <div class="d-flex flex-column align-content-center container btn-group">
+          <form  id="ing">
+            <p class="text-center">Frutas</p>
+            <div id="ing-form-fruits" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Vegetales</p>
+            <div id="ing-form-vegetables" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Carne Bovina</p>
+            <div id="ing-form-mealcow" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Pollo</p>
+            <div id="ing-form-mealchicken"
+              class="d-flex justify-content-center custom-control custom-checkbox flex-wrap">
+            </div>
+            <p class="text-center">Pescados y Mariscos</p>
+            <div id="ing-form-mealfish" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Carne de Cerdo</p>
+            <div id="ing-form-mealpork" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Legumbres</p>
+            <div id="ing-form-legume" class="d-flex justify-content-center flex-wrap">
+            </div>
+            <p class="text-center">Otros</p>
+            <div id="ing-form-misc" class="d-flex justify-content-center flex-wrap">
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-md-7 d-flex justify-content-center flex-column" id="rec-src">
@@ -99,9 +102,7 @@
           Volver
         </swal-button>
         <swal-param name="allowEscapeKey" value="false" />
-        <swal-param
-          name="customClass"
-          value='{ "popup": "my-popup" }' />
+        <swal-param name="customClass" value='{ "popup": "my-popup" }' />
       </template>
   </main>
   <footer class="container">

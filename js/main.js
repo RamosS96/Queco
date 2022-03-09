@@ -10,7 +10,7 @@ const legume = [];
 const misc = [];
 fetch('./js/ingredients.json')
     .then(response => response.json())
-    .then(data => {
+    .then(data => {       
         fruits.push(...data.ingredients.fruits);
         vegetables.push(...data.ingredients.vegetables);
         mchicken.push(...data.ingredients.mchicken);
@@ -27,7 +27,7 @@ fetch('./js/ingredients.json')
         generateLists(mpork, mealporkList);
         generateLists(legume, legumeList);
         generateLists(misc, miscList);
-    })
+    }) 
 
 const fruitsList = document.getElementById('ing-form-fruits');
 const vegetablesList = document.getElementById('ing-form-vegetables');
@@ -45,49 +45,48 @@ function generateLists(array, group) {
         div.value = id.id;
         div.id = id.id;
         div.innerText = id.desc;
-        div.classList = 'btn-sm rounded-circle';
+        div.classList = '';
         group.append(div);
-        checkList(id.id, id.desc);
     })
 };
 
+function addToList(id, group){
+    let ingredientToAdd = group.find(el => el.id == id.id);
+    ingredientsList.push(ingredientToAdd);
+}
 
 //---------------------------------------------Modal y selecciones----------------------------------
 const modalOpenBtn = document.getElementById('btn-open-modal');
-const newModalContainer = document.getElementById('modal-container');
+const formIng = document.getElementById('ing');
 
-function checkList(id, desc) {
-const divid = document.getElementById(id);
-        
-        divid.onclick=() => {
-            ingredientsList.push({ id: id, desc: desc });
-            console.log(ingredientsList);
-            
-        }}
-    
-
+const asd = fruits.map(id => id.id);
+console.log(fruits);
+console.log(asd);
 
 function reduceItem(id) {
-    let ingredientToReduce = ingredientsList.find(el => el.id == id);
-    console.log(ingredientToReduce)
-    let index = ingredientsList.indexOf(ingredientToReduce)
-    ingredientsList.splice(index,1);
-    
-    
-}
+    let ingredientToReduce = newIngredientList.find(el => el.id == id.id);
+    let index = newIngredientList.indexOf(ingredientToReduce)
+    newIngredientList.splice(index, 1);
 
+    Swal.update({
+
+        html: 'hola'
+    });
+
+}
+const newIngredientList = [];
 modalOpenBtn.onclick = () => {
-        const newIngredientList = [];
-        ingredientsList.forEach(id => {
-            let item;
-            item = id.desc;
-            newIngredientList.push(`<button onclick=reduceItem(${id.id})>${item}</button>`);
-        });
+    ingredientsList.forEach(id => {
+        let item;
+        item = id.desc;
+        newIngredientList.push(`<button class="refresh-swal" onclick=reduceItem(${id.id})>${item}</button>`);
+    });
+    const ingredientsInModal = [...new Set(newIngredientList)];       
 
     Swal.fire({
         template: '#my-template',
-        html: `'${newIngredientList}'`
-      });
+        html: `${ingredientsInModal.join('')}`
+    });
 }
 
 
