@@ -1,0 +1,47 @@
+{
+  "recipes": {
+    "cakes": [
+      {
+        "id": "rc01",
+        "desc": "Cheesecake",
+        "ing": [
+          "a02",
+          "b09",
+          "c18"
+        ],
+        "url": ""
+      },
+      {
+        "id": "rc02",
+        "desc": "Bizcochuelo",
+        "ing": [
+          "a02",
+          "b18"
+        ],
+        "url": ""
+      }
+    ],
+    "meals": [
+      {
+        "id": "rm01",
+        "desc": "Carne al horno",
+        "ing": [
+          "c02",
+          "d18"
+        ],
+        "url": ""
+      },{
+        "id": "rm02",
+        "desc": "Pollo al horno",
+        "ing": [
+          "a02",
+          "a18"
+        ],
+        "url": ""
+      }
+    ],
+    "salads": [
+      {}
+    ]
+  }
+}
