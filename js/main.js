@@ -1,10 +1,11 @@
-let ingredientsList = JSON.parse(localStorage.getItem('listIngredient'));
+if ((JSON.parse(localStorage.getItem('listIngredient'))) == null) {
+    ingredientsList = [];
+} else {
+    ingredientsList = JSON.parse(localStorage.getItem('listIngredient'));}
+
+
 let recipesList = [];
-// if (localStorage.getItem('listIngredient') != null){
-//     ingredientsList = [];
-// } else {
-//     ingredientsList = JSON.parse(localStorage.getItem('listIngredient'))
-// }
+
 
 
 const cakes = [];
@@ -48,7 +49,7 @@ fetch('./js/ingredients.json')
 
             ingredientsList.push(id);
             refreshIngredients();
-            console.log(ingredientsList);
+            
             localStorage.setItem('listIngredient', JSON.stringify(ingredientsList))
         };
         function generateLists(array, group) {
@@ -104,16 +105,14 @@ fetch('./js/ingredients.json')
             ingredientsList = [];
             newIngredientList = [];
             localStorage.clear();
-            console.log(ingredientsList);
+            
         }
         btnClearIngredients.onclick = () => {
             clearIngredients();
         }
         modalOpenBtn.onclick = () => {
             ingredientsList.forEach(id => {                               
-                newIngredientList.push(`<button class="refresh-swal" id="${id.desc}">${id.desc} </button>`);
-                let btnReduce = document.getElementById(`${id.desc} `);
-                console.log(btnReduce);
+                newIngredientList.push(`<button class="refresh-swal" id="${id.desc}">${id.desc} </button>`);              
             });
             const ingredientsInModal = [...new Set(newIngredientList)];
         
@@ -126,17 +125,3 @@ fetch('./js/ingredients.json')
         }
 
     })
-
-
-
-
-
-
-//----------------------------------- Busqueda de recetas y storage seleccion -----------------------
-
-
-//Prueba fetch
-// const cheesecake = "cheesecake";
-// fetch(`./pages/recipes/cakes/${cheesecake}.txt`)
-// .then(response => response.text())
-// .then(text => console.log(text))
