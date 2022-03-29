@@ -1,6 +1,11 @@
-let ingredientsList = [];
+let ingredientsList = JSON.parse(localStorage.getItem('listIngredient'));
 let recipesList = [];
-let newIngredientList = [];
+// if (localStorage.getItem('listIngredient') != null){
+//     ingredientsList = [];
+// } else {
+//     ingredientsList = JSON.parse(localStorage.getItem('listIngredient'))
+// }
+
 
 const cakes = [];
 const meals = [];
@@ -25,7 +30,6 @@ const mealporkList = document.getElementById('ing-form-mealpork');
 const legumeList = document.getElementById('ing-form-legume');
 const miscList = document.getElementById('ing-form-misc');
 
-
 const ingredients = [];
 
 
@@ -45,6 +49,7 @@ fetch('./js/ingredients.json')
             ingredientsList.push(id);
             refreshIngredients();
             console.log(ingredientsList);
+            localStorage.setItem('listIngredient', JSON.stringify(ingredientsList))
         };
         function generateLists(array, group) {
             group.innerHTML = '';
@@ -76,9 +81,10 @@ fetch('./js/ingredients.json')
         
         
         
+        
         //---------------------------------------------Modal y selecciones----------------------------------
         const modalOpenBtn = document.getElementById('btn-open-modal');
-        
+        const btnClearIngredients = document.getElementById('btn-crear-ing');
         
         function reduceItem(id) {
             let ingredientToReduce = ingredientsList.find(el => el.id == id.id);
@@ -91,30 +97,36 @@ fetch('./js/ingredients.json')
             });
         
         }
+        let newIngredientList = [];
         
         
-        console.log(newIngredientList);
-        ingredientsList.forEach(id => {                               
-            newIngredientList.push(`<button class="refresh-swal" id="${id.desc}">${id.desc} </button>`);
-        });
-        const ingredientsInModal = [...new Set(newIngredientList)];
-        ingredientsInModal.forEach(id =>{
-            let btnReduce = document.getElementById(id.desc);
-            btnReduce.onclick = () => {
-                reduceItem(id.id);
-            }
-
-        })
+        function clearIngredients () {
+            ingredientsList = [];
+            newIngredientList = [];
+            localStorage.clear();
+            console.log(ingredientsList);
+        }
+        btnClearIngredients.onclick = () => {
+            clearIngredients();
+        }
         modalOpenBtn.onclick = () => {
-            
-            
+            ingredientsList.forEach(id => {                               
+                newIngredientList.push(`<button class="refresh-swal" id="${id.desc}">${id.desc} </button>`);
+                let btnReduce = document.getElementById(`${id.desc} `);
+                console.log(btnReduce);
+            });
+            const ingredientsInModal = [...new Set(newIngredientList)];
+        
             Swal.fire({
                 template: '#my-template',
-                html: `${ingredientsInModal.join('')}`
+                html: `${ingredientsInModal.join('')}`,
+                cancelButtonText:'Salir'
             });
+            
         }
 
     })
+
 
 
 
