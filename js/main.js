@@ -46,8 +46,12 @@ fetch('./js/ingredients.json')
         legume.push(...ingredients.ingredients.legume);
         misc.push(...ingredients.ingredients.misc);
         function addToList(id) {
-
+            Toastify({
+                text: `"Se ha agregado ${id.desc} "`,                      
+                duration: 3000                     
+                }).showToast();
             ingredientsList.push(id);
+            
             refreshIngredients();
             
             localStorage.setItem('listIngredient', JSON.stringify(ingredientsList))
@@ -64,7 +68,8 @@ fetch('./js/ingredients.json')
                 let ids = { id: id.id, desc: id.desc };
                 let btns = document.getElementById(ids.id);
                 btns.onclick = () => { addToList(ids);
-                    refreshIngredients(); }
+                    refreshIngredients();
+                     }
             })
         };
         generateLists(fruits, fruitsList);
@@ -105,7 +110,10 @@ fetch('./js/ingredients.json')
             ingredientsList = [];
             newIngredientList = [];
             localStorage.clear();
-            
+            Toastify({
+                text: "Se han eliminado los ingredientes",                      
+                duration: 3000                     
+                }).showToast();
         }
         btnClearIngredients.onclick = () => {
             clearIngredients();
@@ -119,8 +127,31 @@ fetch('./js/ingredients.json')
             Swal.fire({
                 template: '#my-template',
                 html: `${ingredientsInModal.join('')}`,
-                cancelButtonText:'Salir'
-            });
+                cancelButtonText:'Salir',
+                preConfirm: () => {
+                    if (ingredientsList.length > 0) {
+                        fetch('./recipes/recipes.json')
+                        .then(resp => resp.json())
+                        .then(recip => {
+                            cakes.push(...recip.recipes.cakes);
+                            fetch(cakes[0].url)
+                            .then(resulturl => resulturl.text())
+                            .then(resulttxt => {
+                                Swal.fire({
+                                    title: `${cakes[0].desc}`,
+                                    text: `${resulttxt}`
+                                })
+                            })
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'No se encontraron recetas'
+                        })
+                    }
+                }
+            })           
+            ;
             
         }
 
